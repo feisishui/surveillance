@@ -1,0 +1,208 @@
+<definitions
+        xmlns='http://www.omg.org/spec/BPMN/20100524/MODEL'
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:activiti='http://activiti.org/bpmn'
+        xmlns:bpmndi='http://www.omg.org/spec/BPMN/20100524/DI'
+        xmlns:omgdc='http://www.omg.org/spec/DD/20100524/DC'
+        xmlns:omgdi='http://www.omg.org/spec/DD/20100524/DI'
+        typeLanguage='http://www.w3.org/2001/XMLSchema'
+        expressionLanguage='http://www.w3.org/1999/XPath'
+        targetNamespace='http://www.mossle.com'>
+    <process id="surveillance" isExecutable="true" name="事故处理">
+        <startEvent id="startEvent-1" name="流程开始"></startEvent>
+        <userTask id="taskuser-1" name="事故上报" activiti:formKey="event-report">
+            <humanPerformer>
+                <resourceAssignmentExpression>
+                    <formalExpression>常用语:流程发起人</formalExpression>
+                </resourceAssignmentExpression>
+            </humanPerformer>
+        </userTask>
+        <userTask id="taskuser-2" name="指派核实" activiti:formKey="event-patrolAssign">
+            <humanPerformer>
+                <resourceAssignmentExpression>
+                    <formalExpression>${commandCenter}</formalExpression>
+                </resourceAssignmentExpression>
+            </humanPerformer>
+        </userTask>
+
+        <userTask id="taskuser-5" name="事故处理"  activiti:formKey="event-dispose">
+            <humanPerformer>
+                <resourceAssignmentExpression>
+                    <formalExpression>${company}</formalExpression>
+                </resourceAssignmentExpression>
+            </humanPerformer>
+        </userTask>
+
+        <userTask id="taskuser-3" name="事故核查" activiti:formKey="event-confirm">
+            <humanPerformer>
+                <resourceAssignmentExpression>
+                    <formalExpression>${verifyUser}</formalExpression>
+                </resourceAssignmentExpression>
+            </humanPerformer>
+        </userTask>
+
+        <userTask id="taskuser-4" name="事故立案" activiti:formKey="event-accreditation">
+            <humanPerformer>
+                <resourceAssignmentExpression>
+                    <formalExpression>${commandCenter}</formalExpression>
+                </resourceAssignmentExpression>
+            </humanPerformer>
+        </userTask>
+
+        <exclusiveGateway id="exclusive-1" name="事故上报"></exclusiveGateway>
+        <userTask id="taskuser-6" name="事故结案" activiti:formKey="event-finish">
+            <humanPerformer>
+                <resourceAssignmentExpression>
+                    <formalExpression>${commandCenter}</formalExpression>
+                </resourceAssignmentExpression>
+            </humanPerformer>
+        </userTask>
+        <exclusiveGateway id="exclusive-3" name="事故结案"></exclusiveGateway>
+        <endEvent id="endEvent-1" name="流程结束"></endEvent>
+        <exclusiveGateway id="exclusive-2" name="事故核查"></exclusiveGateway>
+        <sequenceFlow id="transition-2" sourceRef="taskuser-1" targetRef="exclusive-1"></sequenceFlow>
+        <sequenceFlow id="transition-4" sourceRef="taskuser-2" targetRef="taskuser-3"></sequenceFlow>
+        <sequenceFlow id="transition-5" sourceRef="taskuser-3" targetRef="exclusive-2"></sequenceFlow>
+        <sequenceFlow id="transition-8" sourceRef="taskuser-4" targetRef="taskuser-5"></sequenceFlow>
+        <sequenceFlow id="transition-9" sourceRef="taskuser-5" targetRef="taskuser-6"></sequenceFlow>
+        <sequenceFlow id="transition-10" sourceRef="taskuser-6" targetRef="exclusive-3"></sequenceFlow>
+        <sequenceFlow id="transition-3" name="公众上报" sourceRef="exclusive-1" targetRef="taskuser-2">
+            <conditionExpression xsi:type="tFormalExpression">${reportType=='公众上报'}
+            </conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="transition-7" name="不属实" sourceRef="exclusive-2" targetRef="endEvent-1">
+            <conditionExpression xsi:type="tFormalExpression">${confirmComment=='不属实'}
+            </conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="transition-6" name="属实" sourceRef="exclusive-2" targetRef="taskuser-4">
+            <conditionExpression xsi:type="tFormalExpression">${confirmComment=='属实'}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="transition-11" name="结案" sourceRef="exclusive-3" targetRef="endEvent-1">
+            <conditionExpression xsi:type="tFormalExpression">${isClosed=='结案'}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="transition-12" name="不予结案" sourceRef="exclusive-3" targetRef="taskuser-5">
+            <conditionExpression xsi:type="tFormalExpression">${isClosed=='不予结案'}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="transition-13" name="巡检上报" sourceRef="exclusive-1" targetRef="taskuser-4">
+            <conditionExpression xsi:type="tFormalExpression">${reportType=='巡检上报'}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="transition-1" sourceRef="startEvent-1" targetRef="taskuser-1"></sequenceFlow>
+    </process>
+    <bpmndi:BPMNDiagram id="BPMNDiagram_process">
+        <bpmndi:BPMNPlane bpmnElement="process" id="BPMNPlane_process">
+            <bpmndi:BPMNShape bpmnElement="startEvent-1" id="BPMNShape_startEvent-1">
+                <omgdc:Bounds height="30.0" width="30.0" x="15.0" y="145.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="taskuser-1" id="BPMNShape_taskuser-1">
+                <omgdc:Bounds height="80.0" width="100.0" x="75.0" y="120.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="taskuser-2" id="BPMNShape_taskuser-2">
+                <omgdc:Bounds height="80.0" width="100.0" x="285.0" y="120.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="taskuser-5" id="BPMNShape_taskuser-5">
+                <omgdc:Bounds height="80.0" width="100.0" x="765.0" y="120.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="taskuser-3" id="BPMNShape_taskuser-3">
+                <omgdc:Bounds height="80.0" width="100.0" x="420.0" y="120.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="taskuser-4" id="BPMNShape_taskuser-4">
+                <omgdc:Bounds height="80.0" width="100.0" x="630.0" y="120.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="exclusive-1" id="BPMNShape_exclusive-1">
+                <omgdc:Bounds height="40.0" width="40.0" x="210.0" y="140.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="taskuser-6" id="BPMNShape_taskuser-6">
+                <omgdc:Bounds height="80.0" width="100.0" x="900.0" y="120.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="exclusive-3" id="BPMNShape_exclusive-3">
+                <omgdc:Bounds height="40.0" width="40.0" x="1035.0" y="140.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="endEvent-1" id="BPMNShape_endEvent-1">
+                <omgdc:Bounds height="28.0" width="28.0" x="1110.0" y="146.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="exclusive-2" id="BPMNShape_exclusive-2">
+                <omgdc:Bounds height="40.0" width="40.0" x="555.0" y="140.0"></omgdc:Bounds>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge bpmnElement="transition-9" id="BPMNEdge_transition-9">
+                <omgdi:waypoint x="865.0" y="160.0"></omgdi:waypoint>
+                <omgdi:waypoint x="900.0" y="160.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="transition-8" id="BPMNEdge_transition-8">
+                <omgdi:waypoint x="730.0" y="160.0"></omgdi:waypoint>
+                <omgdi:waypoint x="765.0" y="160.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="transition-13" id="BPMNEdge_transition-13">
+                <omgdi:waypoint x="230.5" y="140.5"></omgdi:waypoint>
+                <omgdi:waypoint x="230.5" y="73.0"></omgdi:waypoint>
+                <omgdi:waypoint x="680.0" y="73.0"></omgdi:waypoint>
+                <omgdi:waypoint x="680.0" y="120.0"></omgdi:waypoint>
+                <bpmndi:BPMNLabel>
+                    <omgdc:Bounds height="0.0" width="0.0" x="230.5" y="140.5"></omgdc:Bounds>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="transition-12" id="BPMNEdge_transition-12">
+                <omgdi:waypoint x="1055.5" y="140.5"></omgdi:waypoint>
+                <omgdi:waypoint x="1055.5" y="74.0"></omgdi:waypoint>
+                <omgdi:waypoint x="815.0" y="74.0"></omgdi:waypoint>
+                <omgdi:waypoint x="815.0" y="120.0"></omgdi:waypoint>
+                <bpmndi:BPMNLabel>
+                    <omgdc:Bounds height="0.0" width="0.0" x="1055.5" y="140.5"></omgdc:Bounds>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="transition-11" id="BPMNEdge_transition-11">
+                <omgdi:waypoint x="1074.639705882353" y="160.36029411764707"></omgdi:waypoint>
+                <omgdi:waypoint x="1110.0003729405028" y="160.10218705882846"></omgdi:waypoint>
+                <bpmndi:BPMNLabel>
+                    <omgdc:Bounds height="0.0" width="0.0" x="1074.639705882353"
+                                  y="160.36029411764707"></omgdc:Bounds>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="transition-6" id="BPMNEdge_transition-6">
+                <omgdi:waypoint x="594.5913461538462" y="160.40865384615384"></omgdi:waypoint>
+                <omgdi:waypoint x="630.0" y="160.23923444976077"></omgdi:waypoint>
+                <bpmndi:BPMNLabel>
+                    <omgdc:Bounds height="0.0" width="0.0" x="594.5913461538462"
+                                  y="160.40865384615384"></omgdc:Bounds>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="transition-10" id="BPMNEdge_transition-10">
+                <omgdi:waypoint x="1000.0" y="160.0"></omgdi:waypoint>
+                <omgdi:waypoint x="1035.0" y="160.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="transition-7" id="BPMNEdge_transition-7">
+                <omgdi:waypoint x="575.5" y="179.5"></omgdi:waypoint>
+                <omgdi:waypoint x="575.5" y="238.0"></omgdi:waypoint>
+                <omgdi:waypoint x="1124.0" y="238.0"></omgdi:waypoint>
+                <omgdi:waypoint x="1124.0" y="174.0"></omgdi:waypoint>
+                <bpmndi:BPMNLabel>
+                    <omgdc:Bounds height="0.0" width="0.0" x="575.5" y="179.5"></omgdc:Bounds>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="transition-4" id="BPMNEdge_transition-4">
+                <omgdi:waypoint x="385.0" y="160.0"></omgdi:waypoint>
+                <omgdi:waypoint x="420.0" y="160.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="transition-5" id="BPMNEdge_transition-5">
+                <omgdi:waypoint x="520.0" y="160.0"></omgdi:waypoint>
+                <omgdi:waypoint x="555.0" y="160.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="transition-2" id="BPMNEdge_transition-2">
+                <omgdi:waypoint x="175.0" y="160.0"></omgdi:waypoint>
+                <omgdi:waypoint x="210.0" y="160.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="transition-3" id="BPMNEdge_transition-3">
+                <omgdi:waypoint x="249.59134615384616" y="160.40865384615384"></omgdi:waypoint>
+                <omgdi:waypoint x="285.0" y="160.23923444976077"></omgdi:waypoint>
+                <bpmndi:BPMNLabel>
+                    <omgdc:Bounds height="0.0" width="0.0" x="249.59134615384616"
+                                  y="160.40865384615384"></omgdc:Bounds>
+                </bpmndi:BPMNLabel>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="transition-1" id="BPMNEdge_transition-1">
+                <omgdi:waypoint x="45.0" y="160.0"></omgdi:waypoint>
+                <omgdi:waypoint x="75.0" y="160.0"></omgdi:waypoint>
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</definitions>

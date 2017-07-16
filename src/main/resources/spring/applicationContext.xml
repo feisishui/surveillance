@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<context:component-scan base-package="com.casic">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+	<!-- 默认通过application.properties读取配置 -->
+    <bean id="applicationProperties" class="com.casic.patrol.core.spring.ApplicationPropertiesFactoryBean"/>
+
+    <!-- 定义受环境影响易变的变量 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="properties" ref="applicationProperties"/>
+    </bean>
+
+	<!-- 国际化 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames" value="${application.i18n.packages}"/>
+	</bean>
+
+	<bean id="messageHelper" class="com.casic.patrol.core.spring.MessageHelper"/>
+
+	<bean class="com.casic.patrol.core.logback.JulHandler"/>
+
+	<bean id="applicationContextHelper" class="com.casic.patrol.core.spring.ApplicationContextHelper"/>
+
+    <!-- 简易的csv导出工具 -->
+    <bean id="exportor" class="com.casic.patrol.core.export.CsvExportor"/>
+
+    <bean id="internalStoreConnector" class="com.casic.patrol.spi.store.LocalInternalStoreConnectorFactoryBean"/>
+
+    <bean id="storeConnector" class="com.casic.patrol.internal.store.support.StoreConnectorImpl"/>
+
+    <!-- 模板 -->
+    <bean id="templateService" class="com.casic.patrol.core.template.FreemarkerTemplateService">
+        <property name="baseDir" value="${store.baseDir}/cms/template"/>
+    </bean>
+
+    <!-- 获取当前登录用户的工具 -->
+<!--
+    <bean id="sessionDTO" class="com.casic.patrol.core.auth.SessionDTO" scope="session"/>
+-->
+
+    <bean id="permissionDecorator" class="com.casic.patrol.permission.PermissionDecorator" />
+
+    <bean id="permissionChecker" class="com.casic.patrol.permission.PermissionChecker" />
+
+</beans>

@@ -1,0 +1,18 @@
+<included>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.base}</File>
+        <encoder>
+            <if condition='${log.console.jansi}'>
+                <then>
+                    %date{HH:mm:ss.SSS} %5level [%thread] %logger{5}:%line - %msg%n
+                </then>
+                <else>
+                    ${log.pattern.default}
+                </else>
+            </if>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${log.base}.%d{yyyy-MM-dd-HH}.log</FileNamePattern>
+        </rollingPolicy>
+    </appender>
+</included>

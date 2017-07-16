@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="humanTaskConnector" class="com.casic.patrol.humantask.support.HumanTaskConnectorImpl">
+		<property name="humanTaskListeners">
+			<list>
+				<bean class="com.casic.patrol.humantask.listener.TaskDefUserHumanTaskListener"/>
+				<bean class="com.casic.patrol.humantask.listener.TaskConfUserHumanTaskListener"/>
+				<bean class="com.casic.patrol.humantask.listener.AssigneeAliasHumanTaskListener"/>
+				<bean class="com.casic.patrol.humantask.listener.AssignStrategyHumanTaskListener"/>
+				<bean class="com.casic.patrol.humantask.listener.DelegateHumanTaskListener"/>
+				<bean class="com.casic.patrol.humantask.listener.DeadlineHumanTaskListener"/>
+				<bean class="com.casic.patrol.humantask.listener.TaskNotificationHumanTaskListener"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="taskDefinitionConnector" class="${taskdefinition.connector}"/>
+
+</beans>

@@ -1,0 +1,72 @@
+﻿-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (1, '当月立案数', '立案数', '40', 2);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (2, '当月结案数', '结案数', '40', 2);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (3, '当月结案率', '结案率', '20', 2);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (4, '事故派遣数', '派遣数', '40', 5);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (5, '事故误派数', '误派数', '30', 5);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (6, '事故误派率', '误派率', '30', 5);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (7, '当月事故上报数量', '事故上报数', '40', 3);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (8, '当月事故确认数量', '事故确认数', '30', 3);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (9, '当月事故审查数量', '事故审查数', '30', 3);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (10, '自来水事故处置数', '自来水事故处置数', '30', 8);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (11, '燃气事故处置数', '燃气事故处置数', '30', 21);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (12, '电力事故处置数', '电力事故处置数', '30', 24);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (13, '热力事故处置数', '热力事故处置数', '30', 27);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (14, '排水事故处置数', '排水事故处置数', '30', 30);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (15, '自来水事故处理返工数', '自来水事故处理返工数', '40', 8);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (16, '燃气事故处理返工数', '燃气事故处理返工数', '40', 21);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (17, '电力事故处理返工数', '电力事故处理返工数', '40', 24);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (18, '热力事故处理返工数', '热力事故处理返工数', '40', 27);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (19, '排水事故处理返工数', '排水事故处理返工数', '40', 30);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (20, '自来水事故处置率', '自来水事故处置率', '30', 8);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (21, '燃气事故处置率', '燃气事故处置率', '30', 21);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (22, '电力事故处置率', '电力事故处置率', '30', 24);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (23, '热力事故处置率', '热力事故处置率', '30', 27);
+--
+-- insert into cd_indicator (ID, DESCRIPTION, INDICATORNAME, WEIGHT_VALUE, PARTY_ENTITY_ID)
+-- values (24, '排水事故处置率', '排水事故处置率', '30', 30);
+

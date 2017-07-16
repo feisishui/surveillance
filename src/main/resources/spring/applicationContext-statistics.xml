@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="indicationStatisticsListener" class="com.casic.patrol.indication.listener.IndicationStatisticsListener">
+		<property name="calculates">
+			<list>
+                <bean class="com.casic.patrol.indication.calculaters.ResportCalculate"/>
+                <bean class="com.casic.patrol.indication.calculaters.AssignCalculate"/>
+                <bean class="com.casic.patrol.indication.calculaters.VerifyCalculate"/>
+                <bean class="com.casic.patrol.indication.calculaters.DispatchCalculate"/>
+                <bean class="com.casic.patrol.indication.calculaters.FinishCalculate"/>
+            </list>
+		</property>
+	</bean>
+
+</beans>

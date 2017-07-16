@@ -1,0 +1,1 @@
+<%@page contentType="text/html;charset=UTF-8"%><%@include file="/taglibs.jsp"%><!--TODO LIST:默认跳转到JSP文件--><%String url = "/content/user/user-info-list.jsp";%><%response.sendRedirect(request.getContextPath() + url);%>

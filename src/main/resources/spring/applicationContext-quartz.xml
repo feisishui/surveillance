@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!--<bean id="warnInfoPushJob" class="com.casic.patrolol.scheduler.WarnInfoPushJob"></bean>-->
+
+    <!--<bean id="warnPushJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+    <!--<property name="targetObject" ref="warnInfoPushJob" />-->
+    <!--<property name="targetMethod" value="auotExexcute" />-->
+    <!--</bean>-->
+    <!--<bean id="warnInfoCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+    <!--<property name="jobDetail" ref="warnPushJobDetail" />-->
+    <!--<property name="cronExpression" value="0/10 * * * * ?" />-->
+    <!--</bean>-->
+    <!--<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
+    <!--<property name="autoStartup" value="${quartz.autostartup}"/>-->
+    <!--<property name="quartzProperties" ref="applicationProperties"/>-->
+    <!--<property name="triggers">-->
+    <!--<list>-->
+    <!--<ref bean="warnInfoCronTrigger"/>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+    <task:annotation-driven/>
+    <context:annotation-config/>
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+</beans>

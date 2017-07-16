@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- ================================================== -->
+
+	<alias name="defaultCacheManager" alias="userCacheManager"/>
+
+	<bean id="userCache" class="com.casic.patrol.user.support.UserCacheImpl">
+		<property name="cacheManager" ref="userCacheManager"/>
+	</bean>
+
+	<bean id="userConnector" class="com.casic.patrol.user.support.UserConnectorFactoryBean">
+		<property name="type" value="${user.connector.type}"/>
+		<property name="userCache" ref="userCache"/>
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+
+
+</beans>
